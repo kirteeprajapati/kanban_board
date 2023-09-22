@@ -73,6 +73,8 @@ function App() {
       <KanbanBoard
         users = {users}
         data = {data}
+        className = "kanban_board"
+        selectedGrouping = {selectedGrouping}
       />
     </div>
   );

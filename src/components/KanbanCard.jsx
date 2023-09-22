@@ -1,30 +1,15 @@
 import React, { useState } from 'react';
 import '../styles/KanbanCard.css';
-
-function KanbanCard({ ticket, users, groupingOption }) {
+import { fade_circle, dashed_circle, void_circle, done } from '../assets/index';
+import UserProfile from './UserProfile';
+function KanbanCard({ statusIcon, ticket, users, groupingOption, selectedGrouping, priorityIcon }) {
   const [isMessageVisible, setMessageVisible] = useState(false);
   const [message, setMessage] = useState('');
-
-  const toggleMessageInput = () => {
-    setMessageVisible(!isMessageVisible);
-  };
-
-  const handleInputChange = (e) => {
-    setMessage(e.target.value);
-  };
-
-  const getUserStatus = (userId) => {
-    const user = users.find(u => u.id === userId);
-    if (user) {
-      if (user.available) {
-        return 'Available';
-      } else {
-        return 'Not Available';
-      }
-    }
-    return 'User not found';
-  };
-
+  const userId = ticket.userId;
+  const status = ticket.status;
+  
+  // const imgURL = `src/assets/${priorityIcon[ticket.priority]}.svg`;
+  // console.log(imgURL);
   const renderPriorityCard = () => {
     // Priority card layout
     const userId = ticket.userId;
@@ -35,29 +20,17 @@ function KanbanCard({ ticket, users, groupingOption }) {
           <div className="user-id">
             {userId}
           </div>
-          <div className="profile-image">
-            <img src={`https://via.placeholder.com/50?text=User+${userId}`} alt={`User ${userId}`} />
-          </div>
-        </div>
-        <div className="user-status">
-          {getUserStatus(userId)}
+          <UserProfile userId = {userId} users = {users}/>
         </div>
         <div className="ticket-title">
+        {selectedGrouping === 'priority' ? <img src = {statusIcon[ticket.status]}/>:<></>} 
           {ticket.title}
         </div>
         <div className="feature-request-button">
-          <button onClick={toggleMessageInput}>Feature Request</button>
-          {isMessageVisible && (
-            <div className="message-input">
-              <textarea
-                rows="3"
-                placeholder="Write your message..."
-                value={message}
-                onChange={handleInputChange}
-              ></textarea>
-              <button onClick={toggleMessageInput}>Submit</button>
-            </div>
-          )}
+           {selectedGrouping !== 'priority' ? <img style = {{marginRight: "10px"}} src = {priorityIcon[ticket.priority]}/>:<></>}
+            <img src = {fade_circle}/>
+            <span style={{fontSize: "15px"}}> Feature Request</span> 
+        
         </div>
       </div>
     );
@@ -65,47 +38,33 @@ function KanbanCard({ ticket, users, groupingOption }) {
 
   const renderUserCard = () => {
     // User card layout
-    const userId = ticket.userId;
-    const status = ticket.status;
+    
 
     return (
       <div className="kanban-card">
-        <div className="top-row">
-          <div className="user-id">
-            {userId}
-          </div>
-          <div className="profile-image">
-            <img src={`https://via.placeholder.com/50?text=User+${userId}`} alt={`User ${userId}`} />
-          </div>
-        </div>
         <div className="check-button">
           {/* Customize the check button based on 'status' */}
-          {status === 'Todo' && <div className="empty-circle"></div>}
-          {status === 'In progress' && <div className="half-yellow-circle"></div>}
-          {status === 'Done' && <div className="blue-circle-with-tick">✓</div>}
+          {status === 'Todo' && <img src = {void_circle} className="empty-circle"/>}
+          {status === 'In progress' && <img src = {dashed_circle} className="half-yellow-circle"/>}
+          {status === 'Done' && <img src = {done} className="blue-circle-with-tick"/>}
+          <div className="ticket-title">
+            {ticket.title}
+          </div>
         </div>
-        <div className="ticket-title">
-          {ticket.title}
-        </div>
+      
         <div className="feature-request-button">
-          <button onClick={toggleMessageInput}>Feature Request</button>
-          {isMessageVisible && (
-            <div className="message-input">
-              <textarea
-                rows="3"
-                placeholder="Write your message..."
-                value={message}
-                onChange={handleInputChange}
-              ></textarea>
-              <button onClick={toggleMessageInput}>Submit</button>
-            </div>
-          )}
+          
+            <img style = {{marginRight: "10px"}} src = {priorityIcon[ticket.priority]}/>
+            <img src = {fade_circle}/>
+            <span> Feature Request</span> 
+          
+          
         </div>
       </div>
     );
   };
 
-  return groupingOption === 'priority' ? renderPriorityCard() : renderUserCard();
+  return  selectedGrouping !== 'user' ? renderPriorityCard() : renderUserCard();
 }
 
 export default KanbanCard;

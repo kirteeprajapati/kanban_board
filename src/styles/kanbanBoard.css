@@ -1,5 +1,6 @@
 
-.user-group-kanban-column {
+.kanban-column {
+  display: inline-block;
   background-color: #fff;
   margin: 10px;
   border: 1px solid #ccc;
@@ -19,37 +20,17 @@
   align-items: center;
 }
 
-.empty-circle,
-.half-yellow-circle,
-.blue-circle-with-tick {
-  width: 24px;
-  height: 24px;
-  border: 2px solid #333;
-  border-radius: 50%;
-  margin-bottom: 5px;
-}
-
-.empty-circle {
-  border: 2px solid #ccc;
-}
 
 .half-yellow-circle {
-  border: 2px solid #ffc107;
-  background-color: #ffc107;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  height: 50%;
 }
 
 .blue-circle-with-tick {
-  color: #fff;
-  background-color: #007bff;
-  border: none;
+  
   border-radius: 50%;
   display: flex;
-  justify-content:flex-start;
   align-items: center;
-  font-size: 14px;
 }
 
 /* Ticket Title */

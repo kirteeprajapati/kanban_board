@@ -17,5 +17,8 @@ body {
   .filter-dropdown {
     margin-bottom: 20px;
   }
+.kanban_board{
+  display: flex;
+}
   
   
