@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
 import '../styles/KanbanCard.css';
 import { fade_circle, dashed_circle, void_circle, done } from '../assets/index';
 import UserProfile from './UserProfile';
-function KanbanCard({ statusIcon, ticket, users, groupingOption, selectedGrouping, priorityIcon }) {
-  const [isMessageVisible, setMessageVisible] = useState(false);
-  const [message, setMessage] = useState('');
-  const userId = ticket.userId;
+function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon }) {
+
   const status = ticket.status;
   
   // const imgURL = `src/assets/${priorityIcon[ticket.priority]}.svg`;
