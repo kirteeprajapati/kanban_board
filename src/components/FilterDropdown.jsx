@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { display_filter, down } from '../assets/index';
-import '../styles/filterDropDown.css';
+import '../styles/App.css'
 
 function FilterDropdown({
   selectedGrouping,
