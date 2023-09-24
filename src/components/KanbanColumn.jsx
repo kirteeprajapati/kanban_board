@@ -3,7 +3,8 @@ import React from 'react';
 import KanbanCard from './KanbanCard';
 import { plus, done, no_priority, low, medium, high, urgent, void_circle, dashed_circle, in_progress, cancel, three_dot } from '../assets';
 import UserProfile from './UserProfile';
-import '../styles/App.css'
+import '../App.css'
+
 function KanbanColumn({ title, tickets, users, selectedGrouping }) {
   const priorityIcon = [no_priority, low, medium, high, urgent];
   const statusIcon = {

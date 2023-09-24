@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/kanbanCard.css';
+import '../App.css'
 
 function UserProfile({ userId, users }) {
   const user = users.find(u => u.id === userId);

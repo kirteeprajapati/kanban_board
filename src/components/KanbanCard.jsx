@@ -1,7 +1,7 @@
 import React from 'react';
 import { fade_circle } from '../assets/index';
 import UserProfile from './UserProfile';
-import '../styles/App.css'
+import '../App.css'
 
 function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon }) {
   // Extracting necessary data from the ticket

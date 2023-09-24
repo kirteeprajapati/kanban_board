@@ -1,7 +1,7 @@
 // KanbanBoard.jsx
 import React, { useMemo } from 'react';
 import KanbanColumn from './KanbanColumn';
-import '../styles/App.css'
+import '../App.css'
 
 function KanbanBoard({ users, tickets, selectedGrouping }) {
   const groupedAndSortedTickets = useMemo(() => {

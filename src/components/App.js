@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import FilterDropdown from './FilterDropdown';
 import KanbanBoard from './KanbanBoard';
-import '../styles/App.css'
+import '../App.css'
 
 function App() {
   const [tickets, setTickets] = useState([]);
