@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade_circle } from '../assets/index';
+import { fade_circle, grey_exclamation } from '../assets/index';
 import UserProfile from './UserProfile';
 import '../App.css'
 
@@ -32,7 +32,7 @@ function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon 
         {/* Feature request block */}
         <div className="feature-request-button">
           {selectedGrouping !== 'priority' && (
-            <img className="priority-icon" src={priorityIcon[ticket.priority]} alt="Priority Icon" />
+            <img className="priority-icon" src={ticket.priority === 4 ? grey_exclamation : priorityIcon[ticket.priority]} alt="Priority Icon" />
           )}
           <div className='Feature_block'>
             <img src={fade_circle} className="status-icon" alt="Status Icon" />
