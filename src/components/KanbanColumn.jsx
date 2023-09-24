@@ -49,7 +49,7 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
             )
           )}
 
-          {title == 'user' && <span style={{ fontSize: "1em", marginLeft: "10px", marginRight: "10px" }}>{title}</span>}
+          {title === 'user' && <span style={{ fontSize: "1em", marginLeft: "10px", marginRight: "10px" }}>{title}</span>}
           <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative" }}>{tickets.length}</span>
         </div>
 
