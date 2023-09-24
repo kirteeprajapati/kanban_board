@@ -204,3 +204,10 @@ body {
   color: white;
   font-weight: 500;
 }
+
+.Feature_block{
+  border-radius: 4px;
+  width: 110px;
+  box-shadow: 0 5px 6px rgba(84, 84, 84, 0.1);
+  background-color: #fdfdfd;
+}

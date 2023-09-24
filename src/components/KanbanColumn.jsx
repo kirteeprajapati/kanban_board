@@ -47,13 +47,13 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
             ) : (
               <>
                 <img src={statusIcon[title]} alt="Status" style={{ margin: "0px" }} />
-                <span>{title}</span>
+                <span style={{marginLeft:"8px", marginRight:"8px"}}>{title}</span>
               </>
             )
           )}
 
           {title === 'user' && <span style={{ fontSize: "1em", marginLeft: "10px", marginRight: "10px" }}>{title}</span>}
-          <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative" }}>{tickets.length}</span>
+          <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative", fontSize:"15px"}}>{tickets.length}</span>
         </div>
 
         <div style={{ justifyContent: "space-between", marginRight: "5px" }}>
