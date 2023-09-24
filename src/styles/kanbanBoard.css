@@ -1,55 +1,6 @@
 
-.kanban-column {
-  display: inline-block;
-  background-color: #fff;
-  margin: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-}
-
-.user-id {
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.check-button {
+.kanban-board {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-
-.half-yellow-circle {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.blue-circle-with-tick {
-  
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-}
-
-/* Ticket Title */
-.ticket-title {
-  font-weight: bold;
-  margin: 10px 0;
-}
-
-/* Feature Request Button */
-.feature-request-button button {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 5px 10px;
-  cursor: pointer;
-  outline: none;
-}
-
-.feature-request-button button:hover {
-  background-color: #0056b3;
+  flex-wrap: nowrap;
+  overflow-x: auto; 
 }

@@ -11,8 +11,8 @@ import medium from "./medium.svg";
 import urgent from './urgent.svg';
 import plus from "./plus.svg";
 import no_priority from "./three_dash.svg";
-import Vector1 from './Vector-1.svg';
-import Vector from './Vector.svg';
+import three_dot from './three_dot.svg';
+import display_filter from './display_filter.svg';
 import void_circle from './void_circle.svg';
 
 export {
@@ -29,7 +29,7 @@ export {
     urgent,
     plus,
     no_priority,
-    Vector1,
-    Vector,
+    three_dot,
+    display_filter,
     void_circle
 }

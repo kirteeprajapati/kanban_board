@@ -1,50 +1,49 @@
-// KanbanColumn.js
+// KanbanColumn.jsx
 import React from 'react';
 import KanbanCard from './KanbanCard';
-import { Vector, plus, done, no_priority, low, medium, high, urgent, void_circle, dashed_circle, in_progress } from '../assets';
+import { plus, done, no_priority, low, medium, high, urgent, void_circle, dashed_circle, in_progress, cancel, three_dot } from '../assets';
 import UserProfile from './UserProfile';
-
-function KanbanColumn({ title, tickets, users, selectedGrouping}) {
+function KanbanColumn({ title, tickets, users, selectedGrouping }) {
   const priorityIcon = [no_priority, low, medium, high, urgent];
   const statusIcon = {
     "In progress": in_progress,
     "Todo": void_circle,
     "Done": done,
     "Backlog": dashed_circle,
-  }
-  const renderCards = () => {
-    return tickets.map(ticket => (
-      <KanbanCard
-        key={ticket.id}
-        ticket={ticket}
-        users={users}
-        selectedGrouping = {selectedGrouping}
-        priorityIcon={priorityIcon}
-        statusIcon = {statusIcon}
-      />
-    ));
+    "Canceled": cancel,
   };
-  
 
   return (
-    <div className="kanban-column">
-      <div style = {{display: "flex"}}>
-        <div style ={{display: "inline-block", marginRight: "120px"}}>
-          
-          <div style = {{display: "flex"}}>{selectedGrouping === 'user'? 
-            <UserProfile users = {users} userId={title}/>
-          : (selectedGrouping === 'priority'? <img src = {priorityIcon[title]}/>:<img src = {statusIcon[title]}/>)}
-          <span style={{marginLeft: "20px", marginRight: "10px"}}>{title}</span>
-          <span>{tickets.length}</span>
-          </div>
+    <div style={{ padding: "10px",flex: "0 0 auto" }}>
+      <div className="Column-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {selectedGrouping === 'user' ? (
+            <UserProfile users={users} userId={title} />
+          ) : (
+            selectedGrouping === 'priority' ? (
+              <img src={priorityIcon[title]} alt="Priority Icon" style={{ marginRight: "10px" }} />
+            ) : (
+              <img src={statusIcon[title]} alt="Status Icon" style={{ marginRight: "10px" }} />
+            )
+          )}
+
+          <span style={{ fontSize: "1em", marginLeft: "10px", marginRight: "10px" }}>{title}</span>
+          <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative" }}>{tickets.length}</span>
         </div>
-        <div style ={{display: "inline-block"}}>
-          <img src = {plus}/>
-          <img src = {no_priority}/>
-        </div>
+          <img src={plus} alt="Plus Icon" style={{ marginRight: "10px" }} />
+          <img src={three_dot} alt="Three Dots Icon" />
       </div>
-      
-      {renderCards()}
+
+      {tickets.map((ticket) => (
+        <KanbanCard
+          key={ticket.id}
+          ticket={ticket}
+          users={users}
+          selectedGrouping={selectedGrouping}
+          priorityIcon={priorityIcon}
+          statusIcon={statusIcon}
+        />
+      ))}
     </div>
   );
 }

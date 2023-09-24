@@ -1,65 +1,77 @@
-// FilterDropdown.js
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { display_filter, down } from '../assets/index';
+import '../styles/filterDropDown.css'; // Add your CSS file for styling
 
 function FilterDropdown({
   selectedGrouping,
   setSelectedGrouping,
   selectedOrdering,
   setSelectedOrdering,
-  groupedAndSortedTickets, // Ensure you pass this prop
-  users, // Ensure you pass this prop
-  priority
 }) {
+  const [groupingOptions] = useState(["user", "priority", "status"]);
+  const [orderingOptions] = useState(["priority", "user"]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    // Add a click event listener to the document to close the dropdown when clicking outside
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleDropdownClick = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   const handleGroupingChange = (e) => {
     setSelectedGrouping(e.target.value);
   };
-  console.log(selectedGrouping);
-  console.log(selectedOrdering)
-
 
   const handleOrderingChange = (e) => {
     setSelectedOrdering(e.target.value);
   };
 
-  // Check if groupedAndSortedTickets and users are defined before mapping them
-  // const groupingOptions = groupedAndSortedTickets ? Object.keys(groupedAndSortedTickets) : [];
-  const [groupingOptions, setGroupingOptions] = useState(["user", "priority", "status"]);
-  const [orderingOptions, setOrdeingOptions] = useState(["priority", "user"]);
-
-  // useEffect(() => {
-    
-  //   console.log(users);
-  // const orderopt = ["user", "priority"];
-  // setOrdeingOptions(orderopt);
-  // // }, [users]);
-
-  // // useEffect(() => {
-    
-  // const groupingopt = ["priority", "user","status"];
-  // setGroupingOptions(groupingopt);
-  // }, [priority]);
-  // console.log("group",groupingOptions);
-  // console.log("Order",orderingOptions);
   return (
-    <div className="filter-dropdown">
-      <label>Grouping: 
-        <select value={selectedGrouping} onChange={handleGroupingChange}>
-          {groupingOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label>Ordering: 
-        <select value={selectedOrdering} onChange={handleOrderingChange}>
-          {orderingOptions.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-      </label>
+    <div className="filter-dropdown-container" ref={dropdownRef}>
+      <div className='display-button' onClick={handleDropdownClick}>
+        <img src={display_filter} alt="Display Filter Logo" className="filter-logo" />
+        Display
+        <img src={down} alt="Display Filter Logo" className="down-logo" />
+      </div>
+      {isDropdownOpen && (
+        <div className="filter-dropdown">
+          <label className='grouping'>
+            Grouping:
+            <select value={selectedGrouping} onChange={handleGroupingChange}>
+              {groupingOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className='ordering'>
+            Ordering:
+            <select value={selectedOrdering} onChange={handleOrderingChange}>
+              {orderingOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+      )}
     </div>
   );
 }
