@@ -20,7 +20,7 @@ function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon 
           {/* Render user profile only when grouping is not 'users' */}
           {selectedGrouping !== 'user' && (
             <div className="user-profile">
-                <UserProfile userId={ticket.userId} users={users} />
+              {<UserProfile userId={ticket.userId} users={users} selectedGrouping={selectedGrouping} />}
             </div>
           )}
         </div>
@@ -28,7 +28,7 @@ function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon 
         {/* Ticket title */}
         <div className="ticket-title">
           {selectedGrouping === 'priority' && (
-            <img src={statusIcon[ticket.status]} alt="Status Icon" style={{ marginRight: '10px', height:"15px"}} />
+            <img src={statusIcon[ticket.status]} alt="Status Icon" style={{ marginRight: '10px', height: "15px" }} />
           )}
           {ticket.title}
         </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserProfile({ userId, users }) {
+function UserProfile({ userId, users, selectedGrouping }) {
   const user = users.find(u => u.id === userId);
   const userName = user?.name || '';
 
@@ -21,13 +21,14 @@ function UserProfile({ userId, users }) {
   return (
     <div className="profile-image">
       <div>
-      <div className="profile-frame" style={{ backgroundColor: bgColor }}>
-        <div className="profile-initial">
-          {userInitial}
+        <div className="profile-frame" style={{ backgroundColor: bgColor }}>
+          <div className="profile-initial">
+            {userInitial}
+          </div>
         </div>
+        <div className="online-dot" style={{ backgroundColor: user?.available ? "#007811" : "#acacac", borderColor: "#cdcdcd", borderWidth: "5px" }}></div>
       </div>
-      <div className="online-dot" style={{ backgroundColor: user?.available ? "#007811" : "#acacac", borderColor: "#cdcdcd", borderWidth: "5px" }}></div>
-      </div>
+      {selectedGrouping === 'user' && userName}
     </div>
   );
 }
