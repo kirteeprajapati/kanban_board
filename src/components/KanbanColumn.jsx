@@ -7,26 +7,6 @@ import '../App.css'
 
 function KanbanColumn({ title, tickets, users, selectedGrouping }) {
   const priorityIcon = [no_priority, low, medium, high, urgent];
-
-  const priorityLabels = priorityIcon.map((icon, index) => {
-    switch (index) {
-      case 0:
-        return "No Priority";
-      case 1:
-        return "Low";
-      case 2:
-        return "Medium";
-      case 3:
-        return "High";
-      case 4:
-        return "Urgent";
-      default:
-        return "Unknown Priority";
-    }
-  });
-
-  console.log(priorityLabels);
-
   const statusIcon = {
     "In progress": in_progress,
     "Todo": void_circle,
@@ -54,8 +34,8 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
         </div>
 
         <div style={{justifyContent:"space-between"}}>
-          <img src={plus} alt="Plus Icon" style={{ marginRight: "10px"}} />
-          <img src={three_dot} alt="Three Dots Icon" />
+          <img src={plus} alt="Plus Icon" style={{ marginRight: "10px", width:"0.7em"}} />
+          <img src={three_dot} alt="Three Dots Icon" style={{ marginRight: "10px", width: "0.7em" }} />
         </div>
 
       </div>

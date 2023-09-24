@@ -28,7 +28,9 @@ function UserProfile({ userId, users, selectedGrouping }) {
         </div>
         <div className="online-dot" style={{ backgroundColor: user?.available ? "#007811" : "#acacac", borderColor: "#cdcdcd", borderWidth: "5px" }}></div>
       </div>
-      {selectedGrouping === 'user' && userName}
+      <div style={{paddingLeft:"6px", fontSize:"15px"}}>
+        {selectedGrouping === 'user' && userName}
+      </div>
     </div>
   );
 }

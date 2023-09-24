@@ -4,12 +4,8 @@ import UserProfile from './UserProfile';
 import '../App.css'
 
 function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon }) {
-  // Extracting necessary data from the ticket
   const taskId = ticket.id;
-
-  // Render the card based on the selected grouping
   const renderCard = () => {
-    // Determine the card class based on the selected grouping
     const cardClass = `kanban-card ${selectedGrouping === 'priority' ? 'priority-card' : ''}`;
 
     return (
@@ -47,7 +43,6 @@ function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon 
     );
   };
 
-  // Render the card component
   return renderCard();
 }
 
