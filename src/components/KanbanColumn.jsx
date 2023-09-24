@@ -16,24 +16,28 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
   };
 
   return (
-    <div style={{ padding: "10px",flex: "0 0 auto" }}>
-      <div className="Column-heading" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div style={{ display: "flex", alignItems: "center" }}>
+    <div className='kanban-column'>
+      <div className="Column-heading">
+        <div style={{ display: "flex", alignItems: "center", padding: "0px" }}>
           {selectedGrouping === 'user' ? (
             <UserProfile users={users} userId={title} />
           ) : (
             selectedGrouping === 'priority' ? (
               <img src={priorityIcon[title]} alt="Priority Icon" style={{ marginRight: "10px" }} />
             ) : (
-              <img src={statusIcon[title]} alt="Status Icon" style={{ marginRight: "10px" }} />
+              <img src={statusIcon[title]} alt="Status Icon" style={{ margin: "0px" }} />
             )
           )}
 
-          <span style={{ fontSize: "1em", marginLeft: "10px", marginRight: "10px" }}>{title}</span>
+          {title == 'user' && <span style={{ fontSize: "1em", marginLeft: "10px", marginRight: "10px" }}>{title}</span>}
           <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative" }}>{tickets.length}</span>
         </div>
+
+        <div style={{}}>
           <img src={plus} alt="Plus Icon" style={{ marginRight: "10px" }} />
           <img src={three_dot} alt="Three Dots Icon" />
+        </div>
+
       </div>
 
       {tickets.map((ticket) => (

@@ -18,9 +18,9 @@ function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon 
         <div className="top-row">
           <div className="user-id">{taskId}</div>
           {/* Render user profile only when grouping is not 'users' */}
-          {selectedGrouping !== 'users' && (
+          {selectedGrouping !== 'user' && (
             <div className="user-profile">
-              <UserProfile userId={ticket.userId} users={users} />
+                <UserProfile userId={ticket.userId} users={users} />
             </div>
           )}
         </div>

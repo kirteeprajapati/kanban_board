@@ -8,8 +8,8 @@ import '../App.css'
 function App() {
   const [tickets, setTickets] = useState([]);
   const [users, setUsers] = useState([]);
-  const [selectedGrouping, setSelectedGrouping] = useState('priority');
-  const [selectedOrdering, setSelectedOrdering] = useState('status');
+  const [selectedGrouping, setSelectedGrouping] = useState('user');
+  const [selectedOrdering, setSelectedOrdering] = useState('user');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
