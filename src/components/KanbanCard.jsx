@@ -6,7 +6,6 @@ import '../App.css'
 function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon }) {
   // Extracting necessary data from the ticket
   const taskId = ticket.id;
-  const status = ticket.status;
 
   // Render the card based on the selected grouping
   const renderCard = () => {
