@@ -15,17 +15,40 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
     "Canceled": cancel,
   };
 
+  const getPriorityTag = (priority) => {
+    switch (priority) {
+      case 0:
+        return "No Priority";
+      case 1:
+        return "Low";
+      case 2:
+        return "Medium";
+      case 3:
+        return "High";
+      case 4:
+        return "Urgent";
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className='kanban-column'>
       <div className="Column-heading">
         <div style={{ display: "flex", alignItems: "center", padding: "0px" }}>
           {selectedGrouping === 'user' ? (
-            <UserProfile users={users} userId={title} selectedGrouping={selectedGrouping}/>
+            <UserProfile users={users} userId={title} selectedGrouping={selectedGrouping} />
           ) : (
             selectedGrouping === 'priority' ? (
-              <img src={priorityIcon[title]} alt="Priority" style={{ marginRight: "10px" }} />
+              <>
+                <img src={priorityIcon[title]} alt="Priority" style={{ marginRight: "10px" }} />
+                <span style={{fontSize:"15px"}}>{getPriorityTag(Number(title))}</span>
+              </>
             ) : (
-              <img src={statusIcon[title]} alt="Status" style={{ margin: "0px" }} />
+              <>
+                <img src={statusIcon[title]} alt="Status" style={{ margin: "0px" }} />
+                <span>{title}</span>
+              </>
             )
           )}
 
@@ -33,8 +56,8 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
           <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative" }}>{tickets.length}</span>
         </div>
 
-        <div style={{justifyContent:"space-between"}}>
-          <img src={plus} alt="Plus Icon" style={{ marginRight: "10px", width:"0.7em"}} />
+        <div style={{ justifyContent: "space-between", marginRight: "5px" }}>
+          <img src={plus} alt="Plus Icon" style={{ marginRight: "10px", width: "0.7em" }} />
           <img src={three_dot} alt="Three Dots Icon" style={{ marginRight: "10px", width: "0.7em" }} />
         </div>
 
