@@ -43,9 +43,9 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
             <UserProfile users={users} userId={title} selectedGrouping={selectedGrouping}/>
           ) : (
             selectedGrouping === 'priority' ? (
-              <img src={priorityIcon[title]} alt="Priority Icon" style={{ marginRight: "10px" }} />
+              <img src={priorityIcon[title]} alt="Priority" style={{ marginRight: "10px" }} />
             ) : (
-              <img src={statusIcon[title]} alt="Status Icon" style={{ margin: "0px" }} />
+              <img src={statusIcon[title]} alt="Status" style={{ margin: "0px" }} />
             )
           )}
 

@@ -28,7 +28,6 @@ function App() {
     fetchApi();
   }, []);
 
-  // Close the dropdown when clicking outside of it
   const handleClickOutside = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsDropdownOpen(false);
