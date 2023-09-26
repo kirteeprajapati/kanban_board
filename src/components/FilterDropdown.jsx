@@ -49,28 +49,33 @@ function FilterDropdown({
       </div>
       {isDropdownOpen && (
         <div className="filter-dropdown">
-          <label className='grouping'>
-            Grouping:
-            <select value={selectedGrouping} onChange={handleGroupingChange}>
-              {groupingOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
+  <div className="filter-group">
+    <label className="grouping">
+      Grouping:
+    </label>
+    <select value={selectedGrouping} onChange={handleGroupingChange} className='select'>
+      {groupingOptions.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  </div>
 
-          <label className='ordering'>
-            Ordering:
-            <select value={selectedOrdering} onChange={handleOrderingChange}>
-              {orderingOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-          </label>
-        </div>
+  <div className="filter-group">
+    <label className="ordering">
+      Ordering:
+    </label>
+      <select value={selectedOrdering} onChange={handleOrderingChange} className='select'>
+      {orderingOptions.map((option) => (
+        <option key={option} value={option} style={{}}>
+          {option}
+        </option>
+      ))}
+    </select>
+  </div>
+</div>
+
       )}
     </div>
   );
