@@ -114,7 +114,7 @@ body {
 
 
 .kanban-board {
-  padding-top: 10px;
+  padding-top: 15px;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
