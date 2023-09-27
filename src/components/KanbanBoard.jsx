@@ -1,35 +1,40 @@
-// KanbanBoard.jsx
 import React, { useMemo } from 'react';
 import KanbanColumn from './KanbanColumn';
-import '../App.css'
+import '../App.css';
 
-function KanbanBoard({ users, tickets, selectedGrouping }) {
+function KanbanBoard({ users, tickets, selectedGrouping, selectedOrdering }) {
+  // Group and sort tickets based on selectedGrouping and selectedOrdering
   const groupedAndSortedTickets = useMemo(() => {
     const groupedTickets = {};
-    tickets.forEach((ticket) => {
-      if (selectedGrouping === 'user') {
-        groupedTickets[ticket.userId] = groupedTickets[ticket.userId] || [];
-        groupedTickets[ticket.userId].push(ticket);
-      } else if (selectedGrouping === 'priority') {
-        groupedTickets[ticket.priority] = groupedTickets[ticket.priority] || [];
-        groupedTickets[ticket.priority].push(ticket);
-      } else {
-        groupedTickets[ticket.status] = groupedTickets[ticket.status] || [];
-        groupedTickets[ticket.status].push(ticket);
+
+    // Function to sort tickets based on selectedOrdering
+    const sortTickets = (a, b) => {
+      if (selectedOrdering === 'priority') {
+        return b.priority - a.priority;
       }
+      return a.title.localeCompare(b.title);
+    };
+
+    // Group tickets
+    tickets.forEach((ticket) => {
+      const groupKey =
+        selectedGrouping === 'user'
+          ? ticket.userId
+          : selectedGrouping === 'priority'
+            ? ticket.priority
+            : ticket.status;
+
+      groupedTickets[groupKey] = groupedTickets[groupKey] || [];
+      groupedTickets[groupKey].push(ticket);
     });
 
-    // Sort tickets based on selectedOrdering
+    // Sort grouped tickets
     Object.keys(groupedTickets).forEach((key) => {
-      groupedTickets[key] = groupedTickets[key].sort((a, b) => {
-        if (selectedGrouping === 'priority') {
-          return b.priority - a.priority;
-        }
-        return a.title.localeCompare(b.title);
-      });
+      groupedTickets[key].sort(sortTickets);
     });
+
     return groupedTickets;
-  }, [tickets, selectedGrouping]);
+  }, [tickets, selectedGrouping, selectedOrdering]);
 
   return (
     <div className="kanban-board">

@@ -9,7 +9,7 @@ function FilterDropdown({
   setSelectedOrdering,
 }) {
   const [groupingOptions] = useState(["user", "priority", "status"]);
-  const [orderingOptions] = useState(["priority", "user"]);
+  const [orderingOptions] = useState(["priority", "title"]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -68,7 +68,7 @@ function FilterDropdown({
     </label>
       <select value={selectedOrdering} onChange={handleOrderingChange} className='select'>
       {orderingOptions.map((option) => (
-        <option key={option} value={option} style={{}}>
+        <option key={option} value={option}>
           {option}
         </option>
       ))}
