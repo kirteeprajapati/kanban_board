@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React from 'react'; // Import React
 import ReactDOM from 'react-dom';
 import './App.css'
 import App from './components/App';
