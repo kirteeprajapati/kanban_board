@@ -42,6 +42,17 @@ function App() {
     };
   }, []);
 
+  const handleCardDrop = (cardId, newStatus) => {
+    // Implement the logic to update the card's status here.
+    // You can update the `tickets` state with the new status for the card.
+    // Example:
+    const updatedTickets = tickets.map((ticket) =>
+      ticket.id === cardId ? { ...ticket, status: newStatus } : ticket
+    );
+
+    setTickets(updatedTickets);
+  };
+
   return (
     <>
       <div className="App">
@@ -61,6 +72,7 @@ function App() {
             tickets={tickets}
             selectedGrouping={selectedGrouping}
             selectedOrdering={selectedOrdering}
+            onCardDrop={handleCardDrop} // Pass the drop handler function
           />
         </div>
       </div>
@@ -75,4 +87,3 @@ export default function WrappedApp() {
     </DndProvider>
   );
 }
-

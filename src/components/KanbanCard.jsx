@@ -6,6 +6,7 @@ import { useDrag } from 'react-dnd';
 
 function KanbanCard({ statusIcon, ticket, users, selectedGrouping, priorityIcon }) {
   const taskId = ticket.id;
+  
   const [, drag] = useDrag({
     type: 'CARD',
     item: { id: taskId }, 
