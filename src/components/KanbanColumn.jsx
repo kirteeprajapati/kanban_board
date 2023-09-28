@@ -35,17 +35,17 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
 
   const [, drop] = useDrop({
     accept: 'CARD', 
-    drop: (item) => {
-      const cardId = item.id;
-      const droppedTicket = tickets.find((ticket) => ticket.id === cardId);
-      const updatedTicket = {
-        ...droppedTicket,
-        status: title,
-      };
-      const updatedTickets = tickets.map((ticket) =>
-        ticket.id === cardId ? updatedTicket : ticket
-      );
-    },
+    // drop: (item) => {
+    //   //const cardId = item.id;
+    //   //const droppedTicket = tickets.find((ticket) => ticket.id === cardId);
+    //   // const updatedTicket = {
+    //   //   ...droppedTicket,
+    //   //   status: title,
+    //   // };
+    //   // const updatedTickets = tickets.map((ticket) =>
+    //   //   ticket.id === cardId ? updatedTicket : ticket
+    //   // );
+    // },
   });
 
   return (
