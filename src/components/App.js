@@ -69,7 +69,7 @@ function App() {
             tickets={tickets}
             selectedGrouping={selectedGrouping}
             selectedOrdering={selectedOrdering}
-            onCardDrop={handleCardDrop} // Pass the drop handler function
+            onCardDrop={handleCardDrop} 
           />
         </div>
       </div>
