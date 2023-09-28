@@ -3,49 +3,39 @@ import KanbanColumn from './KanbanColumn';
 import '../App.css';
 
 function KanbanBoard({ users, tickets, selectedGrouping, selectedOrdering, onCardDrop }) {
-  // Group and sort tickets based on selectedGrouping and selectedOrdering
-  const groupedAndSortedTickets = useMemo(() => {
-    const groupedTickets = {};
-
-    // Function to sort tickets based on selectedOrdering
-    const sortTickets = (a, b) => {
-      if (selectedOrdering === 'priority') {
-        return b.priority - a.priority;
-      }
-      return a.title.localeCompare(b.title);
-    };
-
-    // Group tickets
+  
+  const uniqueTags = useMemo(() => {
+    const tagsSet = new Set();
     tickets.forEach((ticket) => {
-      const groupKey =
+      const tag =
         selectedGrouping === 'user'
           ? ticket.userId
           : selectedGrouping === 'priority'
             ? ticket.priority
             : ticket.status;
-
-      groupedTickets[groupKey] = groupedTickets[groupKey] || [];
-      groupedTickets[groupKey].push(ticket);
+      tagsSet.add(tag);
     });
-
-    // Sort grouped tickets
-    Object.keys(groupedTickets).forEach((key) => {
-      groupedTickets[key].sort(sortTickets);
-    });
-
-    return groupedTickets;
-  }, [tickets, selectedGrouping, selectedOrdering]);
+    return Array.from(tagsSet);
+  }, [tickets, selectedGrouping]);
 
   return (
     <div className="kanban-board">
-      {Object.keys(groupedAndSortedTickets).map((key) => (
+      {uniqueTags.map((tag) => (
         <KanbanColumn
-          key={key}
-          title={key}
-          tickets={groupedAndSortedTickets[key]}
+          key={tag}
+          title={tag}
+          tickets={tickets.filter((ticket) => {
+            const ticketTag =
+              selectedGrouping === 'user'
+                ? ticket.userId
+                : selectedGrouping === 'priority'
+                  ? ticket.priority
+                  : ticket.status;
+            return ticketTag === tag;
+          })}
           users={users}
           selectedGrouping={selectedGrouping}
-          onCardDrop={onCardDrop} 
+          onCardDrop={onCardDrop}
         />
       ))}
     </div>

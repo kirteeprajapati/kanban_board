@@ -14,7 +14,6 @@ function FilterDropdown({
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    // Add a click event listener to the document to close the dropdown when clicking outside
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsDropdownOpen(false);
