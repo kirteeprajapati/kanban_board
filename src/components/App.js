@@ -43,9 +43,6 @@ function App() {
   }, []);
 
   const handleCardDrop = (cardId, newStatus) => {
-    // Implement the logic to update the card's status here.
-    // You can update the `tickets` state with the new status for the card.
-    // Example:
     const updatedTickets = tickets.map((ticket) =>
       ticket.id === cardId ? { ...ticket, status: newStatus } : ticket
     );

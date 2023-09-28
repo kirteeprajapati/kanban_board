@@ -45,7 +45,7 @@ function KanbanBoard({ users, tickets, selectedGrouping, selectedOrdering, onCar
           tickets={groupedAndSortedTickets[key]}
           users={users}
           selectedGrouping={selectedGrouping}
-          onCardDrop={onCardDrop} // Pass the drop handler function
+          onCardDrop={onCardDrop} 
         />
       ))}
     </div>
