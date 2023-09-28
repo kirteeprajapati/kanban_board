@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import KanbanColumn from './KanbanColumn';
 import '../App.css';
 
-function KanbanBoard({ users, tickets, selectedGrouping, selectedOrdering }) {
+function KanbanBoard({ users, tickets, selectedGrouping, selectedOrdering, onCardDrop }) {
   // Group and sort tickets based on selectedGrouping and selectedOrdering
   const groupedAndSortedTickets = useMemo(() => {
     const groupedTickets = {};
@@ -45,6 +45,7 @@ function KanbanBoard({ users, tickets, selectedGrouping, selectedOrdering }) {
           tickets={groupedAndSortedTickets[key]}
           users={users}
           selectedGrouping={selectedGrouping}
+          onCardDrop={onCardDrop} // Pass the drop handler function
         />
       ))}
     </div>

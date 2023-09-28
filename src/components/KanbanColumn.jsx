@@ -1,11 +1,11 @@
-// KanbanColumn.jsx
 import React from 'react';
 import KanbanCard from './KanbanCard';
 import { plus, done, no_priority, low, medium, high, urgent, void_circle, dashed_circle, in_progress, cancel, three_dot } from '../assets';
 import UserProfile from './UserProfile';
-import '../App.css'
+import '../App.css';
+import { useDrop } from 'react-dnd';
 
-function KanbanColumn({ title, tickets, users, selectedGrouping }) {
+function KanbanColumn({ title, tickets, users, selectedGrouping, onCardDrop }) {
   const priorityIcon = [no_priority, low, medium, high, urgent];
   const statusIcon = {
     "In progress": in_progress,
@@ -32,8 +32,16 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
     }
   };
 
+  const [, drop] = useDrop({
+    accept: 'CARD',
+    drop: (item) => {
+      // Handle the drop event here and update the card's status.
+      onCardDrop(item.id, title);
+    },
+  });
+
   return (
-    <div className='kanban-column'>
+    <div className='kanban-column' ref={drop}>
       <div className="Column-heading">
         <div style={{ display: "flex", alignItems: "center", padding: "0px" }}>
           {selectedGrouping === 'user' ? (
@@ -42,36 +50,36 @@ function KanbanColumn({ title, tickets, users, selectedGrouping }) {
             selectedGrouping === 'priority' ? (
               <>
                 <img src={priorityIcon[title]} alt="Priority" style={{ marginRight: "10px" }} />
-                <span style={{fontSize:"15px"}}>{getPriorityTag(Number(title))}</span>
+                <span style={{ fontSize: "15px" }}>{getPriorityTag(Number(title))}</span>
               </>
             ) : (
               <>
                 <img src={statusIcon[title]} alt="Status" style={{ margin: "0px" }} />
-                <span style={{marginLeft:"8px", marginRight:"8px"}}>{title}</span>
+                <span style={{ marginLeft: "8px", marginRight: "8px" }}>{title}</span>
               </>
             )
           )}
 
           {title === 'user' && <span style={{ fontSize: "1em", marginLeft: "10px", marginRight: "10px" }}>{title}</span>}
-          <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative", fontSize:"15px"}}>{tickets.length}</span>
+          <span style={{ marginLeft: "4px", marginRight: "20px", position: "relative", fontSize: "15px" }}>{tickets.length}</span>
         </div>
 
         <div style={{ justifyContent: "space-between", marginRight: "5px" }}>
           <img src={plus} alt="Plus Icon" style={{ marginRight: "10px", width: "0.7em" }} />
           <img src={three_dot} alt="Three Dots Icon" style={{ marginRight: "10px", width: "0.7em" }} />
         </div>
-
       </div>
 
       {tickets.map((ticket) => (
-        <KanbanCard
-          key={ticket.id}
-          ticket={ticket}
-          users={users}
-          selectedGrouping={selectedGrouping}
-          priorityIcon={priorityIcon}
-          statusIcon={statusIcon}
-        />
+        <div draggable="true" key={ticket.id}>
+          <KanbanCard
+            ticket={ticket}
+            users={users}
+            selectedGrouping={selectedGrouping}
+            priorityIcon={priorityIcon}
+            statusIcon={statusIcon}
+          />
+        </div>
       ))}
     </div>
   );
