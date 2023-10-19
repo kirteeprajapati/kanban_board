@@ -9,7 +9,7 @@ function App() {
   const [tickets, setTickets] = useState([]);
   const [users, setUsers] = useState([]);
   const [selectedGrouping, setSelectedGrouping] = useState('status');
-  const [selectedOrdering, setSelectedOrdering] = useState('user');
+  const [selectedOrdering, setSelectedOrdering] = useState('users');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
